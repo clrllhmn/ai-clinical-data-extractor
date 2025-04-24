@@ -516,3 +516,133 @@ Output:
 ```
 
 ## Inferring
+- Inferring sentiment
+
+```
+foot_massager_review = """
+The massager arrived on time and was ready to use straight out of the box. It offers strong,
+soothing pressure and the heat feature makes a big difference after a long day. It’s a bit bulky
+to store, and it can be noisy at higher settings, but it works incredibly well. My feet feel
+lighter and more relaxed after just 15 minutes. If you’re on your feet all day, this is a game-changer.
+
+"""
+```
+```
+prompt = f"""
+What is the sentiment of the product review below delimited by <>?
+Product review = <{foot_massager_review}>
+"""
+```
+- Output:
+```
+Positive Sentiment
+```
+
+- Inferring emotions:
+```
+prompt = f"""
+Identify five emotions that the writer of the following review, which is delimited by <>, is expressing.
+Product review = <{foot_massager_review}>
+"""
+
+response = get_completion(prompt)
+print(response)
+```
+- Output:
+```
+1. Satisfaction
+2. Appreciation
+3. Frustration
+4. Excitement
+5. Relief
+```
+
+- Identifying anger:
+```
+prompt = f"""
+Is the writer of the following review expressing anger?
+The review is delimited by <>.
+Answer either yes or no.
+Product review = <{foot_massager_review}>
+"""
+
+response = get_completion(prompt)
+print(response)
+```
+- Output:
+```
+No
+```
+
+- Extracting product and company name from reviews
+```
+prompt = f"""
+Identify the following items from the review text: 
+- Item purchased by reviewer
+- Company that made the item
+
+The review is delimited with <>. Format your response as a JSON object with
+"Item" and "Brand" as the keys. If the information isn't present, use "unknown"
+as the value.
+Make your response as short as possible.
+  
+Review text: <{foot_massager_review}>
+"""
+```
+- Output:
+```
+{
+  "Item": "massager",
+  "Brand": "unknown"
+}
+```
+
+- Doing multiple tasks at once
+```
+Identify the following items from the product review delimited by <>
+- The sentiment of the reviewer - Positive or Negative
+- If the reviewer is expressing anger
+- Item purchased by reviewer
+- Company that made the item
+
+Format your response as a JSON object with "Sentiment", "Angry", 
+"Item" and "Brand" as the keys. If the information isn't present, use "unknown"
+as the value.
+Make your response as short as possible.
+Format "Angry" value as a Boolean
+Review text: <{foot_massager_review}>
+"""
+```
+- Output:
+```
+{
+    "Sentiment": "Positive",
+    "Angry": false,
+    "Item": "massager",
+    "Brand": "unknown"
+}
+```
+
+- Inferring topics
+```
+prompt = f"""
+Determine 5 topics that are being discussed in the news article below delimited by <>.
+Limit each topic to one or two words.
+List the topics seperated by commas.
+
+News Article = <{story}>
+"""
+```
+- Output:
+```
+Zoo, Penguin, Conservation, Animal Rights, Captivity
+```
+
+## Transforming
+
+
+## Expanding
+
+
+
+
