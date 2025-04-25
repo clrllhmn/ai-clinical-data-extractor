@@ -639,7 +639,95 @@ Zoo, Penguin, Conservation, Animal Rights, Captivity
 ```
 
 ## Transforming
+- LLMs are good at transforming text, for example, translating from one language to another, changing the tone, spellchecking and proofreading, and even converting formats such as switching to JSON or HTML
 
+- Translation
+```
+prompt = f"""
+Translate the following text delimited by <> into French, Spanish, and English pirate.
+
+Text = <I think cats are extrememly cute!>
+"""
+```
+- Ouput:
+```
+French: <Je pense que les chats sont extrêmement mignons!>
+Spanish: <¡Creo que los gatos son extremadamente lindos!>
+Pirate: <I reckon cats be right cute!>
+```
+
+- Changing tone:
+```
+prompt = f"""
+Change the tone of the following text delimited by <> to polite and formal.
+
+Text = < I don't care that your blender is broken. You can replace it yourself.>
+"""
+```
+- Output:
+```
+I apologize for the inconvenience of your broken blender. It would be best for you to replace it yourself.
+```
+
+- Spellcheck and proofreading
+```
+prompt = f"""
+Proofread the following text delimited by <> and make sure the grammar is correct.
+
+<I don't think I and John will be making it to the diner party on Sunray. We hve so mch chores and things to do.>
+"""
+```
+- Output:
+```
+I don't think John and I will be making it to the dinner party on Sunday. We have so
+many chores and things to do.
+```
+
+- Conversion
+```
+data_json = { "grade 4 students" :[ 
+    {"name":"Jill Smith", "grade":"A"},
+    {"name":"Jenna Darko", "grade":"B"},
+    {"name":"Jai Patel", "grade":"B"}
+]}
+
+prompt = f"""
+Translate the following python dicionary delimited by <> from JSON to an HTML table with
+column headers and title
+JSON: <{data_json}>
+"""
+```
+- Output:
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade 4 Students</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Grade</th>
+    </tr>
+    <tr>
+        <td>Jill Smith</td>
+        <td>A</td>
+    </tr>
+    <tr>
+        <td>Jenna Darko</td>
+        <td>B</td>
+    </tr>
+    <tr>
+        <td>Jai Patel</td>
+        <td>B</td>
+    </tr>
+</table>
+
+</body>
+</html>
+```
 
 ## Expanding
 
