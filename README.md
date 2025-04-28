@@ -11,9 +11,8 @@ The goal is to explore how AI—especially large language models—can support h
 
 ## 🛠️ Features
 
-- Uses OpenAI’s API for LLM-powered text extraction - will utilize a free-to-use educational Jupyter notebook to utilize its OpenAI API key
+- Uses OpenAI’s API for LLM-powered text extraction
 - Prompt + Output tracking for transparency and reproducibility
-- Secure API key handling via `.env` file and `python-dotenv`
 - Markdown logs of prompt experiments and results
 
 ## 📚 What I'm Learning
