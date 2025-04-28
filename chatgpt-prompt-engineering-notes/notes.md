@@ -730,7 +730,75 @@ JSON: <{data_json}>
 ```
 
 ## Expanding
+- LLMs are able to take small pieces of text and expand them to larger sentences.
+- Using LLM to generate a customer service reply tailored to each review
 
+- Customize the automated reply to a customer's email
+```
+review = f"""
+So, they still had the 7-quart slow cooker on seasonal
+sale for around $34 in the month of October, about
+half off, but for some reason (call it holiday markup)
+around the middle of November the prices all went
+up to about anywhere between $55–$69 for the same
+model. And the 5-quart one went up around $8 or
+so from the earlier sale price of $24.
+So it looks okay, but if you look at the handles, the part
+where they attach to the base doesn’t look as sturdy
+as it did in previous versions from a few years ago, but I
+plan to be very careful with it (example, I avoid moving
+it around when it’s filled, and use a separate liner to
+make clean-up easier and reduce stress on the pot).
+Special tip when slow cooking, lightly sear your meat
+and soften your vegetables in a pan first before putting
+them into the slow cooker—it helps build a deeper
+flavor and keeps the texture better after long cooking.
+Also, when making soups or stews, layer the harder
+vegetables (like carrots and potatoes) at the bottom
+and softer ones (like peas and spinach) near the top
+so they don’t overcook.
+After about nine months, the lid started getting a
+little loose and didn’t seal quite as well, but it still works
+if I make sure to adjust it carefully. I called customer
+service but the warranty was just about over, so I
+ended up just keeping it as is. FYI: The overall quality
+in slow cookers isn’t what it used to be, so they are kind
+of relying on nostalgia and brand name to keep people
+buying. Got it delivered in about three days.
+"""
+```
+```
+prompt = f"""
+You are a customer service AI assistant.
+Your task is to send an email reply to a valued customer.
+Given the customer email delimited by <>,
+Generate a reply to thank the customer for their review.
+Determine the sentiment of the review.
+If the sentiment is positive or neutral, thank them for their review.
+If the sentiment is negative, apologize and suggest that
+they can reach out to customer service. 
+Make sure to use specific details from the review.
+Write in a concise and professional tone.
+Sign the email as `AI customer agent`.
+Customer review: <{review}>
+"""
+```
+- Output:
+```
+Dear valued customer,
 
+Thank you for taking the time to share your detailed review of the 7-quart slow cooker you purchased.
+We appreciate your feedback on the pricing changes and the observations you made about the product's handles
+and lid over time.
 
+We are glad to hear that you are finding ways to care for your slow cooker and enhance your cooking experience
+with helpful tips like searing meat and layering vegetables. Your insights will surely be valuable to other customers.
 
+We apologize for any inconvenience you experienced with the lid becoming loose after nine months of use. If you
+encounter any further issues or have any questions, please feel free to reach out to our customer service team for assistance.
+
+Thank you once again for your review and for choosing our product. We value your feedback and strive to improve
+our products based on customer experiences.
+
+AI customer agent
+```
